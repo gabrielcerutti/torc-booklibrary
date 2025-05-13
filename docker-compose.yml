@@ -1,0 +1,6 @@
+services:
+  torc.booklibrary.api:
+    image: ${DOCKER_REGISTRY-}torcbooklibraryapi
+    build:
+      context: .
+      dockerfile: Torc.BookLibrary.API/Dockerfile

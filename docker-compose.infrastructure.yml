@@ -1,0 +1,58 @@
+version: '3.9'
+
+services:      
+  seq:
+    image: datalust/seq
+    container_name: seq
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - "5341:80"
+    healthcheck:
+        test: wget -q --tries=1 -O- http://localhost:5341/
+        interval: 3s
+        timeout: 3s
+        retries: 10
+        start_period: 10s
+    networks:
+      - torc-network
+
+  rabbitmq:
+    container_name: "rabbitmq"
+    image: masstransit/rabbitmq:latest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      # "test: rabbitmq-diagnostics check_port_connectivity" does not work with masstransit/rabbitmq
+      test: [ "CMD", "rabbitmqctl", "status" ]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+    networks:
+      - torc-network
+    profiles:
+      - donotstart
+  
+  mssql:
+    container_name: mssql-server
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=YourStrong!Passw0rd  # Replace with a strong password
+      - MSSQL_PID=Express  # Use "Developer" for dev environments or "Standard" for production
+    ports:
+      - "1433:1433"
+    networks:
+      - torc-network
+    healthcheck:
+      test: ["CMD", "sqlcmd", "-U", "sa", "-P", "YourStrong!Passw0rd", "-Q", "SELECT 1"]
+      interval: 10s
+      retries: 5
+      timeout: 10s
+      start_period: 30s
+    restart: always
+
+networks:
+  torc-network:
+    name: torc-network
