@@ -19,7 +19,7 @@ This is a React + TypeScript frontend for the Royal Library book management syst
 1. **Clone the repository**
 
    ```sh
-   git clone <your-repo-url>
+   git clone https://github.com/gabrielcerutti/torc-booklibrary
    cd Torc.BookLibrary.UI
    ```
 
@@ -65,7 +65,3 @@ npm run lint
 - [Material UI](https://mui.com/)
 - [MUI Data Grid](https://mui.com/x/react-data-grid/)
 - [Vite](https://vitejs.dev/)
-
-## License
-
-MIT
