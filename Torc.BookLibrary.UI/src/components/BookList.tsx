@@ -5,10 +5,11 @@ import type { Book } from '../types/Book';
 
 interface BookListProps {
   books: Book[];
+  loading: boolean;
 }
 
 const columns: GridColDef[] = [
-  { field: 'title', headerName: 'Book Title', flex: 1, minWidth: 150 },
+  { field: 'title', headerName: 'Book Title', flex: 1, minWidth: 250 },
   {
     field: 'author',
     headerName: 'Author',
@@ -29,19 +30,27 @@ const columns: GridColDef[] = [
   },
 ];
 
-const BookList: React.FC<BookListProps> = ({ books }) => {
+const height = 'calc(100vh - 200px)'; // Adjust height to fit the screen
+
+const BookList: React.FC<BookListProps> = ({ books, loading }) => {
   return (
-    <Box sx={{ width: '100%', mt: 2 }}>
-      <DataGrid
-        rows={books.map(b => ({ ...b, id: b.bookId }))}
-        columns={columns}
-        pageSizeOptions={[5, 10, 20]}
-        initialState={{
-          pagination: { paginationModel: { pageSize: 10, page: 0 } },
-        }}
-        disableRowSelectionOnClick
-        autoHeight
-      />
+    <Box sx={{ width: '100%', mt: 1 }}>
+      <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            height
+          }}>
+        <DataGrid
+          rows={books.map(b => ({ ...b, id: b.bookId }))}
+          columns={columns}
+          loading={loading}
+          pageSizeOptions={[5, 10, 20]}
+          initialState={{
+            pagination: { paginationModel: { pageSize: 10, page: 0 } },
+          }}
+          disableRowSelectionOnClick
+        />
+      </div>
     </Box>
   );
 };
