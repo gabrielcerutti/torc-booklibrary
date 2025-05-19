@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using Torc.BookLibrary.API.Data;
+using Torc.BookLibrary.API.Data.Interfaces;
 
 Console.WriteLine(FiggleFonts.Standard.Render("Torc.BookLibrary.API"));
 
@@ -35,6 +36,7 @@ builder.Host.UseSerilog(); // Replace default logging with Serilog
 builder.Services.AddControllers();
 builder.Services.AddDbContext<BookDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IBookRepository, BookRepository>();
 
 // Add CORS policy
 builder.Services.AddCors(options =>
