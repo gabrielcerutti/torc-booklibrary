@@ -40,6 +40,8 @@ namespace Torc.BookLibrary.API.Data
         public required string Type { get; set; }
         public required string ISBN { get; set; }
         public required string Category { get; set; }
+        // For the sake of simplicity, we are using int? to represent the OwnershipStatus
+        // In a real-world scenario, you might want to use a more complex design to support many ownership statuses per user
         public int? OwnershipStatus { get; set; } // 0 = Own, 1 = Love, 2 = WantToRead
     }
 

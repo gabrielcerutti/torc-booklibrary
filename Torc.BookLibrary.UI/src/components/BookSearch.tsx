@@ -42,7 +42,7 @@ const BookSearch: React.FC<BookSearchProps> = ({ onSearch }) => {
           </TextField>
         </Grid>
         {searchBy === 'author' && (
-          <Grid size={{ xs: 12, md: 5 }}>
+          <Grid size={{ xs: 12, md: 3 }}>
             <TextField
               label="Author"
               value={author}
@@ -54,7 +54,7 @@ const BookSearch: React.FC<BookSearchProps> = ({ onSearch }) => {
           </Grid>
         )}
         {searchBy === 'isbn' && (
-          <Grid size={{ xs: 12, md: 5 }}>
+          <Grid size={{ xs: 12, md: 3 }}>
             <TextField
               label="ISBN"
               value={isbn}
@@ -66,7 +66,7 @@ const BookSearch: React.FC<BookSearchProps> = ({ onSearch }) => {
           </Grid>
         )}
         {searchBy === 'ownershipStatus' && (
-          <Grid size={{ xs: 12, md: 5 }}>
+          <Grid size={{ xs: 12, md: 3 }}>
             <TextField
               label="Ownership Status"
               select
