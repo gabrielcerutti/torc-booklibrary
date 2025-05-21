@@ -5,6 +5,7 @@ using Serilog;
 using Torc.BookLibrary.API.Data;
 using Torc.BookLibrary.API.Data.Interfaces;
 
+
 Console.WriteLine(FiggleFonts.Standard.Render("Torc.BookLibrary.API"));
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,8 +35,17 @@ builder.Host.UseSerilog(); // Replace default logging with Serilog
 
 // Add services to the container.
 builder.Services.AddControllers();
-builder.Services.AddDbContext<BookDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<BookDbContext>((serviceProvider, options) =>
+{
+    var config = serviceProvider.GetService<IConfiguration>();
+    var env = serviceProvider.GetService<IWebHostEnvironment>();
+
+    // This ensures SQL Server is only used when not running in tests
+    if (env is not null && !env.EnvironmentName.Equals("Testing", StringComparison.OrdinalIgnoreCase))
+    {
+        options.UseSqlServer(config?.GetConnectionString("DefaultConnection"));
+    }
+});
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 
 // Add CORS policy
@@ -75,7 +85,11 @@ if (app.Environment.IsDevelopment())
 
     using var scope = app.Services.CreateScope();
     var dbContext = scope.ServiceProvider.GetRequiredService<BookDbContext>();
-    dbContext.Database.Migrate(); // Applies migrations and creates the database if it doesn't exist
+    // Only run migrations if using SQL Server
+    if (dbContext.Database.ProviderName == "Microsoft.EntityFrameworkCore.SqlServer")
+    {
+        dbContext.Database.Migrate(); // Applies migrations and creates the database if it doesn't exist
+    }
 }
 
 // Use CORS
@@ -88,3 +102,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+// This is only for test project discovery and WebApplicationFactory support.
+public partial class Program { }

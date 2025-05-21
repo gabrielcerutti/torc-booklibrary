@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Torc.BookLibrary.API.Data.Interfaces;
 
+namespace Torc.BookLibrary.API.Controllers;
+
 [ApiController]
 [Route("api/[controller]")]
 public class BooksController : ControllerBase
