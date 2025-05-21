@@ -1,5 +1,7 @@
 # **Torc Book Library API**
 
+[![.NET Build](https://github.com/gabrielcerutti/torc-booklibrary/actions/workflows/dotnet.yml/badge.svg)](https://github.com/gabrielcerutti/torc-booklibrary/actions/workflows/dotnet.yml)
+
 The **Torc Book Library API** is a backend service built with `.NET 9` and Entity Framework Core. It provides endpoints to manage and search for books by author, ISBN, or ownership status. The API is designed to work with SQL Server as the database and Seq for centralized logging.
 
 ---
