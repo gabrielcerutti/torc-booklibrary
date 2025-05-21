@@ -1,5 +1,7 @@
 # Torc Book Library UI
 
+[![Node.js Build](https://github.com/gabrielcerutti/torc-booklibrary/actions/workflows/nodejs-vite.yml/badge.svg)](https://github.com/gabrielcerutti/torc-booklibrary/actions/workflows/nodejs-vite.yml)
+
 This is a React + TypeScript frontend for the Royal Library book management system. It allows you to search and browse your personal book library.
 
 ## Features

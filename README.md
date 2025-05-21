@@ -1,6 +1,7 @@
 # Torc Book Library
 
 [![.NET Build](https://github.com/gabrielcerutti/torc-booklibrary/actions/workflows/dotnet.yml/badge.svg)](https://github.com/gabrielcerutti/torc-booklibrary/actions/workflows/dotnet.yml)
+[![Node.js Build](https://github.com/gabrielcerutti/torc-booklibrary/actions/workflows/nodejs-vite.yml/badge.svg)](https://github.com/gabrielcerutti/torc-booklibrary/actions/workflows/nodejs-vite.yml)
 
 Torc Book Library is a full-stack application designed to help users manage and explore a collection of books. The project is divided into two main parts:
 
