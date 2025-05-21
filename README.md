@@ -1,5 +1,7 @@
 # Torc Book Library
 
+[![.NET Build](https://github.com/gabrielcerutti/torc-booklibrary/actions/workflows/dotnet.yml/badge.svg)](https://github.com/gabrielcerutti/torc-booklibrary/actions/workflows/dotnet.yml)
+
 Torc Book Library is a full-stack application designed to help users manage and explore a collection of books. The project is divided into two main parts:
 
 - **Backend API** (`Torc.BookLibrary.API`): Handles all server-side operations, including data storage, retrieval, and business logic.
