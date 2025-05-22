@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
-import { Container, Typography, Alert, Box } from '@mui/material';
-import BookSearch from './components/BookSearch';
-import BookList from './components/BookList';
-import { fetchBooks } from './api/BookApi';
-import type { BookSearchParams } from './api/BookApi';
-import type { Book } from './types/Book';
-import './App.css';
+import { useEffect, useState } from "react";
+import { Container, Typography, Alert, Box } from "@mui/material";
+import BookSearch from "./components/BookSearch";
+import BookList from "./components/BookList";
+import { fetchBooks } from "./api/BookApi";
+import type { BookSearchParams } from "./api/BookApi";
+import type { Book } from "./types/Book";
+import "./App.css";
 
 function App() {
   const [books, setBooks] = useState<Book[]>([]);
@@ -21,7 +21,7 @@ function App() {
         const data = await fetchBooks({}); // Fetch all books
         setBooks(data);
       } catch {
-        setError('Failed to fetch books');
+        setError("Failed to fetch books");
       } finally {
         setLoading(false);
       }
@@ -36,19 +36,23 @@ function App() {
       const data = await fetchBooks(params);
       setBooks(data);
     } catch {
-      setError('Failed to fetch books');
+      setError("Failed to fetch books");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <Container maxWidth="lg" sx={{
-      display: 'flex',
-      flexDirection: 'column',
-      minHeight: '100vh',
-      py: 2
-    }}>
+    <Container
+      maxWidth="lg"
+      sx={{
+        px: { xs: 2, sm: 3 }, // Responsive horizontal padding
+        py: 2,
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+      }}
+    >
       <Typography variant="h4" gutterBottom>
         Royal Library
       </Typography>
@@ -57,9 +61,22 @@ function App() {
         <BookSearch onSearch={handleSearch} />
       </Box>
       {/* BookList as content body, fills remaining space */}
-      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>        
-        {error && <Alert severity="error" sx={{ mt: 2 }}>{error}</Alert>}
-        <Box sx={{ flex: 1, overflow: 'auto' }}>
+      <Box
+        sx={{
+          flexGrow: 1,
+          display: "flex",
+          flexDirection: "column",
+          minHeight: 0,
+          width: "100%",
+          overflow: "hidden",
+        }}
+      >
+        {error && (
+          <Alert severity="error" sx={{ mt: 2 }}>
+            {error}
+          </Alert>
+        )}
+        <Box sx={{ flex: 1, overflow: "auto" }}>
           <BookList books={books} loading={loading} />
         </Box>
       </Box>
