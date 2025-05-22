@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DataGrid, type GridColDef } from '@mui/x-data-grid';
-import { Box } from '@mui/material';
+import { Box, useMediaQuery, useTheme } from '@mui/material';
 import type { Book } from '../types/Book';
 
 interface BookListProps {
@@ -30,9 +30,10 @@ const columns: GridColDef[] = [
   },
 ];
 
-const height = 'calc(100vh - 200px)'; // Adjust height to fit the screen
-
 const BookList: React.FC<BookListProps> = ({ books, loading }) => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const height = isSmallScreen ? 'calc(100vh - 350px)' : 'calc(100vh - 200px)';
   return (
     <Box sx={{ width: '100%', mt: 1 }}>
       <div style={{
@@ -48,7 +49,7 @@ const BookList: React.FC<BookListProps> = ({ books, loading }) => {
           initialState={{
             pagination: { paginationModel: { pageSize: 10, page: 0 } },
           }}
-          disableRowSelectionOnClick
+          disableRowSelectionOnClick          
         />
       </div>
     </Box>

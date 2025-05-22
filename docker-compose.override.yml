@@ -1,6 +1,6 @@
 services:
   torc.booklibrary.api:
-    container_name: torc.booklibrary.api
+    container_name: api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
