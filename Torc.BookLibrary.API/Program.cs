@@ -1,6 +1,5 @@
 using Figgle;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
 using Serilog;
 using Torc.BookLibrary.API.Data;
 using Torc.BookLibrary.API.Data.Interfaces;
@@ -63,7 +62,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.OpenApiInfo
     {
         Title = "Torc Book Library API",
         Version = "v1",
