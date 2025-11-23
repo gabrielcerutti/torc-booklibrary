@@ -1,6 +1,5 @@
 using Figgle;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi;
 using Serilog;
 using Torc.BookLibrary.API.Data;
 using Torc.BookLibrary.API.Data.Interfaces;

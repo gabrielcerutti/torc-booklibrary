@@ -36,7 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\Torc.BookLibrary.API\bin\$(Configuration)\net9.0\Torc.BookLibrary.API.deps.json">
+    <None Include="..\Torc.BookLibrary.API\bin\$(Configuration)\net10.0\Torc.BookLibrary.API.deps.json">
       <Link>testhost.deps.json</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
