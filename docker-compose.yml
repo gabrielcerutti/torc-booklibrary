@@ -4,3 +4,15 @@ services:
     build:
       context: .
       dockerfile: Torc.BookLibrary.API/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DatabaseProvider=Postgres # change to Postgres to use PostgreSQL, change to SqlServer to use MS SQL Server
+      # Override Postgres connection for in-container DNS (service name 'postgres')
+      - ConnectionStrings__PostgresConnection=Host=postgres;Port=5432;Database=BookLibrary;Username=postgres;Password=postgres
+    networks:
+      - torc-network
+
+networks:
+  torc-network:
+    external: true
+    name: torc-network

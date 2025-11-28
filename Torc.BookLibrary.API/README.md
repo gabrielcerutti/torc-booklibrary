@@ -2,7 +2,7 @@
 
 [![.NET Build](https://github.com/gabrielcerutti/torc-booklibrary/actions/workflows/dotnet.yml/badge.svg)](https://github.com/gabrielcerutti/torc-booklibrary/actions/workflows/dotnet.yml)
 
-The **Torc Book Library API** is a backend service built with `.NET 9` and Entity Framework Core. It provides endpoints to manage and search for books by author, ISBN, or ownership status. The API is designed to work with SQL Server as the database and Seq for centralized logging.
+The **Torc Book Library API** is a backend service built with `.NET 9` and Entity Framework Core. It provides endpoints to manage and search for books by author, ISBN, or ownership status. The API is designed to work with SQL Server or PostgreSQL as the database and Seq for centralized logging.
 
 ---
 
@@ -25,7 +25,7 @@ Before running the backend, ensure you have the following installed:
 
 ### **1. Start Infrastructure Services**
 The backend requires the following infrastructure services:
-- **SQL Server**: For the database.
+- **SQL Server** or **PostgreSQL**: For the database.
 - **Seq**: For centralized logging.
 
 To start these services, use the `docker-compose.infrastructure.yml` file:
@@ -33,7 +33,7 @@ To start these services, use the `docker-compose.infrastructure.yml` file:
 ```bash
 docker-compose -f docker-compose.infrastructure.yml up -d
 ```
-This command will start the SQL Server and Seq containers.
+This command will start the SQL Server, PostgreSQL and Seq containers.
 
 ### **2. Start the Backend API**
 The backend API will:
@@ -44,7 +44,8 @@ To start the API, use the `docker-compose.yml` file:
 ```bash
 docker-compose up -d
 ```
-This command will build the API image and start the container.
+By default, the API uses SQL Server. To switch to PostgreSQL, set the environment variable `DatabaseProvider=Postgres` (already hinted in `docker-compose.yml`) or in `appsettings.Development.json`.
+
 ### **3. Access the API**
 Once the API is running, you can access it at:
 ```

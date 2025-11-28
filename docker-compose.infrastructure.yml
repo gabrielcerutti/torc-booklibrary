@@ -36,6 +36,25 @@ services:
       start_period: 30s
     restart: always
 
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=BookLibrary
+    ports:
+      - "5432:5432"
+    networks:
+      - torc-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+      start_period: 20s
+    restart: unless-stopped
+
 networks:
   torc-network:
     name: torc-network
